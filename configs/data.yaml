@@ -1,4 +1,0 @@
-pipline:
-
-  -def_name:"def_robber"
-  -args:"[1,2]"

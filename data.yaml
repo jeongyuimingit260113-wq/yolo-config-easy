@@ -1,0 +1,10 @@
+names:
+  0: good
+  1: bad   # 이부분은 예시 임으로 본인이 설정 하거나 라벨링한 class를 적어주시기 바랍니다.
+path: .
+train: data/images/train_processed
+val: data/images/val_processed
+
+
+
+

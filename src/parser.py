@@ -1,23 +1,24 @@
+import engine_utills as utl
 import yaml
-import os
-from pathlib import Path
+import preprocess as pre
+import logging
+
+logger =logging.getLogger('engine')
+
+class ConfigProcess:
+    def __init__(self,config_dir: str = None):
+        self.data=utl.get_config('cv_and_yolo.yaml', config_dir)
+
+    def parse(self):
+        target_pipeline = self.data.get("pipeline")
+
+        if target_pipeline is None:
+            logger.exception
+            raise ValueError("pipline 이 없습니다. pipline의 이름의 철자를 확인하시거나  깃헙의 형식을 지켜주시기 바랍니다.")
+
+        for pipeline in target_pipeline:
 
 
-def get_process_config(target_yaml):
-    # 1. 현재 파일(loader.py)의 위치를 기준으로 프로젝트 루트 찾기
-    # .parent를 사용해 'utils' -> 'src' -> 'Root'로 올라감
-    current_path = Path(__file__).resolve()
-    root_path = current_path.parent.parent.parent
-
-    # 2. 루트 폴더 기준으로 config 파일 경로 설정
-    config_path = root_path / "config" / target_yaml
-
-    # 3. 파일 읽기
-    if not config_path.exists():
-        raise FileNotFoundError(f"설정 파일을 찾을 수 없습니다: {config_path}")
-
-    with open(config_path, 'r', encoding='utf-8') as f:
-        return yaml.safe_load(f)
 
 
-get_process_config()
+
